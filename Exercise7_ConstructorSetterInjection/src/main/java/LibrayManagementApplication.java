@@ -1,0 +1,21 @@
+package com.library;
+
+import com.library.service.BookService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class LibraryManagementApplication {
+
+    public static void main(String[] args) {
+        ApplicationContext context =
+                new ClassPathXmlApplicationContext("applicationContext.xml");
+
+        BookService bookService = (BookService) context.getBean("bookService");
+
+        // If both constructor and setter injection are wired correctly, these run fine
+        bookService.addBook("Effective Java");
+        bookService.deleteBook("Effective Java");
+
+        System.out.println("Constructor and setter injection verified!");
+    }
+}
